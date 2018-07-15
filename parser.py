@@ -119,17 +119,18 @@ class Parser ():
 
 
     def findAbitur(self, name):
+        querset = []
         if self.abitur_high_school.get(name) != None:
-            return self.abitur_high_school[name]
+            querset.append(self.name_abitur[name])
         else:
-            for abitName in self.abitur_high_school:
+            for abitName in self.name_abitur:
                 if name in abitName:
-                    return self.abitur_high_school[abitName]
-        return "Абитур не найден"
+                    querset.append(self.name_abitur[abitName])
+        return querset
 
 
-parser = Parser()
-parser.parsAndSave('abiturs.csv', ['ВШЭ'])
+# parser = Parser()
+# parser.parsAndSave('abiturs.csv', ['ВШЭ'])
 
 
 # parser.pars(['РЭА'])
