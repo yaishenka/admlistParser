@@ -57,6 +57,8 @@ class Parser ():
                 for tr in soup.find_all('tr'):
                     test = tr.find_all('td')
                     if len(test) > 3:
+                        if len(test[3].contents) == 0:
+                            continue
                         abitur = test[3].contents[0]
                         try:
                             abitur = int(abitur)
