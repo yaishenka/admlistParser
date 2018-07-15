@@ -5,13 +5,30 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import csv
-import sys
+
+class Abitur ():
+    def __init__(self, name):
+        self.high_schools = {}
+        self.name = name
+
+    def addSchool(self, schoolName, directName, konkurs):
+        tmp = (directName, str(konkurs))
+        if self.high_schools.get(schoolName) == None:
+            self.high_schools[schoolName] = []
+        self.high_schools[schoolName].append(tmp)
+
+    # def __str__(self):
+    #     return self.name + ' ' + self.high_schools.__str__()
+    def __str__(self):
+        return self.high_schools.__str__()
+
 
 class Parser ():
     main_url = 'http://admlist.ru/'
     high_schools_urls = []  # ссылки на вузы
     high_schools_directions = {}  # словарь название вуза : ссылки на направления
     abitur_high_school = {}  # словарь абитур : вузы
+    name_abitur = {} #словарь имя: абитур (внутри вуз: все направления)
 
 
     def fetch_hight_schools_urls(self): #берет все ссылки на вузы
@@ -53,16 +70,24 @@ class Parser ():
             for direct_url in directions:
                 html_doc = urlopen(direct_url).read()
                 soup = BeautifulSoup(html_doc, "lxml")
-                print(soup.h2.contents[1])
+                directName = soup.h2.contents[1].split(',')
+                directName = directName[len(directName)-1] #название направления
+                print(directName)
                 for tr in soup.find_all('tr'):
                     test = tr.find_all('td')
-                    if len(test) > 3:
+                    if len(test) > 5:
+                        konkurs = test[5].contents[0] #ОК БВИ
                         if len(test[3].contents) == 0:
                             continue
                         abitur = test[3].contents[0]
                         try:
                             abitur = int(abitur)
                         except:
+                            if self.name_abitur.get(abitur) == None:
+                                tmpAbitur = Abitur(abitur)
+                                self.name_abitur[abitur] = tmpAbitur
+                            self.name_abitur[abitur].addSchool(high_school_name, directName, konkurs)
+
                             if self.abitur_high_school.get(abitur) == None:
                                 self.abitur_high_school[abitur] = []
                             if high_school_name in self.abitur_high_school[abitur]:
@@ -73,7 +98,7 @@ class Parser ():
 
     #записывает словарь с абитурами в файл CSV
     def save(self, path):
-        data = self.abitur_high_school
+        data = self.name_abitur
         with open(path, 'w', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(('Абитур', 'Вузы'))
@@ -104,8 +129,12 @@ class Parser ():
 
 
 parser = Parser()
-# parser.parsAndSave('abiturs.csv', ['ВШЭ'])
-# parser.pars(['ВШЭ'])
-parser.pars()
-print (parser.findAbitur('Галынская Арина Михайловна'))
-print (parser.findAbitur('Галынская'))
+parser.parsAndSave('abiturs.csv', ['ВШЭ'])
+
+
+# parser.pars(['РЭА'])
+# parser.parsAndSave('abiturs.csv')
+# print (parser.findAbitur('Галынская Арина Михайловна'))
+# print (parser.findAbitur('Галынская'))
+# for ab in parser.name_abitur:
+#     print (parser.name_abitur[ab].high_schools['ВШЭ'][0][1])
