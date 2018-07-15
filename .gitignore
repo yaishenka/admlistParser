@@ -3,3 +3,10 @@ abiturs.csv
 
 *venv*
 *idea*
+*dist*
+*pycache*
+*.pyc
+__pycache__/design.cpython-36.pyc
+__pycache__/design.cpython-36.pyc
+\__pycache__
+base.csv

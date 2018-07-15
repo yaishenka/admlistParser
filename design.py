@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/daniilgagarinov/Documents/GitHub/admlistParser/test.ui'
+# Form implementation generated from reading ui file 'test.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,12 +12,27 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setAutoFillBackground(True)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
+        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
+        self.progressBar.setEnabled(True)
+        self.progressBar.setProperty("value", 0)
+        self.progressBar.setObjectName("progressBar")
+        self.gridLayout.addWidget(self.progressBar, 0, 0, 1, 1)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+        self.myReloadButton = QtWidgets.QPushButton(self.centralwidget)
+        self.myReloadButton.setObjectName("myReloadButton")
+        self.horizontalLayout.addWidget(self.myReloadButton)
+        self.saveButton = QtWidgets.QPushButton(self.centralwidget)
+        self.saveButton.setObjectName("saveButton")
+        self.horizontalLayout.addWidget(self.saveButton)
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName("lineEdit")
         self.horizontalLayout.addWidget(self.lineEdit)
@@ -27,10 +42,47 @@ class Ui_MainWindow(object):
         self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox.setObjectName("checkBox")
         self.horizontalLayout.addWidget(self.checkBox)
-        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout, 1, 0, 1, 1)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.allChecked = QtWidgets.QPushButton(self.centralwidget)
+        self.allChecked.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.allChecked.setObjectName("allChecked")
+        self.horizontalLayout_2.addWidget(self.allChecked)
+        self.allUnchecked = QtWidgets.QPushButton(self.centralwidget)
+        self.allUnchecked.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.allUnchecked.setObjectName("allUnchecked")
+        self.horizontalLayout_2.addWidget(self.allUnchecked)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.listView = QtWidgets.QListView(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.listView.sizePolicy().hasHeightForWidth())
+        self.listView.setSizePolicy(sizePolicy)
+        self.listView.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.listView.setAutoFillBackground(True)
         self.listView.setObjectName("listView")
-        self.gridLayout.addWidget(self.listView, 1, 0, 1, 1)
+        self.verticalLayout.addWidget(self.listView)
+        self.horizontalLayout_4.addLayout(self.verticalLayout)
+        self.listWidget = QtWidgets.QListWidget(self.centralwidget)
+        self.listWidget.setObjectName("listWidget")
+        self.horizontalLayout_4.addWidget(self.listWidget)
+        self.gridLayout.addLayout(self.horizontalLayout_4, 2, 0, 1, 1)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem)
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.horizontalLayout_3.addWidget(self.label)
+        self.gridLayout.addLayout(self.horizontalLayout_3, 3, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -38,7 +90,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.okButton.setText(_translate("MainWindow", "OK"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "AdmlistParser"))
+        self.myReloadButton.setText(_translate("MainWindow", "RELOAD"))
+        self.saveButton.setText(_translate("MainWindow", "SAVE"))
+        self.okButton.setText(_translate("MainWindow", "FIND"))
         self.checkBox.setText(_translate("MainWindow", "БВИ"))
+        self.allChecked.setText(_translate("MainWindow", "All"))
+        self.allUnchecked.setText(_translate("MainWindow", "None"))
 
