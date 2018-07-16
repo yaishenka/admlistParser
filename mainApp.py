@@ -1,4 +1,4 @@
-import sys  # sys нужен для передачи argv в QApplication
+import sys
 from PyQt5  import QtWidgets
 from PyQt5.QtCore import *
 from PyQt5  import QtGui
@@ -63,7 +63,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def save(self):
         if len(self.parser.name_abitur) == 0:
-            self.listWidget.addItem('Обновите базу!')
+            self.listWidget.addItem('Update base!')
             return
         self.parser.save('base.csv')
 
@@ -124,7 +124,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def findAbitur(self):
         if len(self.parser.name_abitur) == 0:
-            self.listWidget.addItem('Обновите базу!')
+            self.listWidget.addItem('Update base!')
             return
         if self.lineEdit.text() == '':
             return
@@ -132,7 +132,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             self.listWidget.clear()
             abits = self.parser.findAbitur(self.lineEdit.text())
             if len(abits) == 0:
-                self.listWidget.addItem('Абитур не найден :(')
+                self.listWidget.addItem('Student didnt found :(')
                 return
             else:
                 for abit in abits:
@@ -156,11 +156,11 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
 
 def main():
-    app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
-    window = ExampleApp()  # Создаём объект класса ExampleApp
-    window.show()  # Показываем окно
-    app.exec_()  # и запускаем приложение
+    app = QtWidgets.QApplication(sys.argv)
+    window = ExampleApp()
+    window.show()
+    app.exec_()
 
 
-if __name__ == '__main__':  # Если мы запускаем файл напрямую, а не импортируем
-    main()  # то запускаем функцию main()
+if __name__ == '__main__':
+    main()

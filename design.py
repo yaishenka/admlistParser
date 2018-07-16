@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'test.ui'
+# Form implementation generated from reading ui file '/Users/daniilgagarinov/Documents/GitHub/admlistParser/test.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -51,11 +51,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.allChecked = QtWidgets.QPushButton(self.centralwidget)
-        self.allChecked.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.allChecked.setMaximumSize(QtCore.QSize(75, 16777215))
         self.allChecked.setObjectName("allChecked")
         self.horizontalLayout_2.addWidget(self.allChecked)
         self.allUnchecked = QtWidgets.QPushButton(self.centralwidget)
-        self.allUnchecked.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.allUnchecked.setMaximumSize(QtCore.QSize(75, 16777215))
         self.allUnchecked.setObjectName("allUnchecked")
         self.horizontalLayout_2.addWidget(self.allUnchecked)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.listView.sizePolicy().hasHeightForWidth())
         self.listView.setSizePolicy(sizePolicy)
-        self.listView.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.listView.setMaximumSize(QtCore.QSize(150, 16777215))
         self.listView.setAutoFillBackground(True)
         self.listView.setObjectName("listView")
         self.verticalLayout.addWidget(self.listView)
