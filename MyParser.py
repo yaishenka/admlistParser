@@ -55,7 +55,7 @@ class Parser (QObject):
         soup = BeautifulSoup(html_doc, "lxml")
         for link in soup.find_all('a'):
             high_school = link.get('href')
-            if 'vk' in high_school:
+            if 'vk' in high_school or 'help' in high_school:
                 pass
             else:
                 high_school_url = self.main_url + high_school

@@ -12,3 +12,5 @@ __pycache__/design.cpython-36.pyc
 base.csv
 /mainApp
 
+*src*
+*target*
